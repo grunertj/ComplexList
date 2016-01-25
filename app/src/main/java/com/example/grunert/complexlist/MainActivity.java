@@ -1,8 +1,11 @@
+// Car -> message class
+// MyListAdapter + ListViev -> messageboard class
+// Constants -> messagetypes class
+
 package com.example.grunert.complexlist;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private List<Car> myCars = new ArrayList<Car>();
+    private ArrayAdapter<Car> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void populateCarList() {
-        myCars.add(new Car("Ford",1940,R.drawable.ford,"Needing work"));
-        myCars.add(new Car("Audi",2010,R.drawable.audi,"Good shape"));
-        myCars.add(new Car("VW",2016,R.drawable.vw,"Perfect"));
+        myCars.add(new Car("Ford", Constants.FORD, R.drawable.ford,"Needing work"));
+        myCars.add(new Car("Audi",Constants.AUDI,R.drawable.audi,"Good shape"));
+        myCars.add(new Car("VW",Constants.VW,R.drawable.vw,"Perfect"));
     }
 
     private void populateListView() {
-        ArrayAdapter<Car> adapter = new MyListAdapter();
+        adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.carsListView);
         list.setAdapter(adapter);
     }
@@ -71,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setField(ArrayAdapter<Car> adapter, List<Car> myCars, int field, String message) {
+        for (Car car: myCars) {
+            if (car.getYear() == field) {
+                car.setMake(message);
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+    }
+
     private void registerClickCallback() {
         ListView list = (ListView) findViewById(R.id.carsListView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 Car clickedCar = myCars.get(position);
                 String message = "You clicked position " + position
                         + " Make " + clickedCar.getMake();
+
+                Car.setField(adapter, myCars, Constants.FORD, "Trabant");
+
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
