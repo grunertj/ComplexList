@@ -1,6 +1,8 @@
 // Car -> message class
 // MyListAdapter + ListViev -> messageboard class
 // Constants -> messagetypes class
+// http://stackoverflow.com/questions/6958279/how-to-use-a-custom-arrayadapter-in-a-separate-class
+// http://stackoverflow.com/questions/3346080/android-references-to-a-context-and-memory-leaks
 
 package com.example.grunert.complexlist;
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         populateCarList();
         populateListView();
         registerClickCallback();
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateCarList() {
         myCars.add(new Car("Ford", Constants.FORD, R.drawable.ford,"Needing work"));
-        myCars.add(new Car("Audi",Constants.AUDI,R.drawable.audi,"Good shape"));
+        myCars.add(new Car("Audi", Constants.AUDI, R.drawable.audi,"Good shape"));
         myCars.add(new Car("VW",Constants.VW,R.drawable.vw,"Perfect"));
     }
 
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             // return super.getView(position, convertView, parent);
             Car currentCar = myCars.get(position);
 
-            ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.item_icon);
             imageView.setImageResource(currentCar.getIconID());
 
             TextView makeText = (TextView)itemView.findViewById(R.id.item_Make);
@@ -73,16 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
             return itemView;
         }
-    }
-
-    private void setField(ArrayAdapter<Car> adapter, List<Car> myCars, int field, String message) {
-        for (Car car: myCars) {
-            if (car.getYear() == field) {
-                car.setMake(message);
-                adapter.notifyDataSetChanged();
-            }
-        }
-
     }
 
     private void registerClickCallback() {

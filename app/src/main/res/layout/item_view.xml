@@ -42,5 +42,6 @@
         android:id="@+id/txtCondition"
         android:layout_alignBottom="@+id/item_icon"
         android:layout_toEndOf="@+id/item_Make"
-        android:layout_marginStart="47dp" />
+        android:layout_marginStart="47dp"
+        android:allowUndo="true" />
 </RelativeLayout>

@@ -6,6 +6,5 @@ package com.example.grunert.complexlist;
 public class Constants {
     public static final int FORD = 0;
     public static final int AUDI = 1;
-    
     public static final int VW = 2;
 }

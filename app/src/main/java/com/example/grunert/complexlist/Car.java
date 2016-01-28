@@ -1,5 +1,6 @@
 package com.example.grunert.complexlist;
 
+import android.content.res.ColorStateList;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Car {
         for (Car car: myCars) {
             if (car.getYear() == field) {
                 car.setMake(message);
+                car.setCondition("Good");
                 adapter.notifyDataSetChanged();
                 break;
             }
