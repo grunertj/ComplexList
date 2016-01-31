@@ -4,7 +4,7 @@
 // http://stackoverflow.com/questions/6958279/how-to-use-a-custom-arrayadapter-in-a-separate-class
 // http://stackoverflow.com/questions/3346080/android-references-to-a-context-and-memory-leaks
 // http://stackoverflow.com/questions/7759504/access-locationmanager-locationlistener-from-class
-// http://stackoverflow.com/questions/7759504/access-locationmanager-locationlistener-from-class
+// http://www.vogella.com/tutorials/AndroidLocationAPI/article.html#locationapi_criteria
 
 package com.example.grunert.complexlist;
 
